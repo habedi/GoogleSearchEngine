@@ -1,6 +1,6 @@
 import random
 
-a = 0.03
+a = 0.1
 b = 20
 
 

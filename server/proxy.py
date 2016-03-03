@@ -1,8 +1,10 @@
 from .internals.debug import print_stack_trace
+from .internals.constants import proxy_test_urls, proxy_timeout
+from random import choice
 import socket
 
+
 class Proxy(object):
-    
     def __init__(self, proxy):
         if not isinstance(proxy, (list, tuple)):
             return -1331
@@ -11,7 +13,7 @@ class Proxy(object):
         try:
             import socks
             import socket
-            
+
             ip, port = proxy
             socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, ip, port)
         except:
@@ -25,14 +27,14 @@ class Proxy(object):
     def get_proxy(self):
         return self.proxy
 
-    def test_proxy(self, timeout=10.0, url='https://github.com'):
-        
+    def test_proxy(self, timeout, url):
+
         # for neurilizing side effect caused by "socket.socket = socks.socksocket"
         prev_state = socket.socket
         try:
             import socks
             import requests
-            
+
             ip, port = self.proxy
             socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, ip, port)
             socket.socket = socks.socksocket
@@ -48,10 +50,11 @@ class Proxy(object):
             else:
                 return "Ok"
 
+
 if __name__ == "__main__":
     try:
         p = Proxy(proxy=("0.0.0.0", 1080))
-        tr = p.test_proxy(timeout=5.0, url='https://github.com')
+        tr = p.test_proxy(timeout=proxy_timeout, url=choice(proxy_test_urls))
     except:
         print_stack_trace()
     else:
@@ -62,5 +65,3 @@ if __name__ == "__main__":
                 print("error code", tr)
             else:
                 print(p.get_proxy())
-
-    
