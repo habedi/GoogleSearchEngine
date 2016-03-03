@@ -1,0 +1,31 @@
+# diretories
+TempDir
+build
+certs
+
+# junk files
+*~
+*#
+*.bak
+*.pyc
+
+# virtualenvironment
+mven
+mevenv
+menv
+
+# test + debug
+idle.py
+main2.py
+main1.py
+doc
+temp
+doc2
+Docs
+docs
+192_*
+x_*
+X_*
+
+#log files
+*.log
