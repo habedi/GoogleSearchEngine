@@ -7,7 +7,7 @@ from server.internals.debug import print_stack_trace
 from server.internals.errors import *
 
 
-class TaskServer(object):
+class Server(object):
     def __init__(self, flaskapp):
         self.app = flaskapp
 
@@ -45,7 +45,7 @@ class TaskServer(object):
 
 if __name__ == "__main__":
     app = Flask(__name__)
-    ts = TaskServer(flaskapp=app)
+    ts = Server(flaskapp=app)
     ts.run(host="0.0.0.0", port=65000,
            debug=True, use_reloader=False,
            threaded=True)
