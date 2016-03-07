@@ -3,8 +3,8 @@ import json
 from flask import Flask
 from flask import request, jsonify
 
-from server.internals.debug import print_stack_trace
-from server.internals.errors import *
+from .internals.debug import print_stack_trace
+from .internals.errors import *
 
 
 class Server(object):
